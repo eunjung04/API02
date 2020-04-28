@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.api02.datas.User
 import com.example.api02.utils.ConnectSever
 import com.example.api02.utils.ContextUtil
 import kotlinx.android.synthetic.main.activity_login.*
@@ -34,7 +35,18 @@ class LoginActivity : BaseActivity() {
             ConnectSever.postRequestLogin(mContext,id,pw, object : ConnectSever)
             override fun onResponse(json:JSONObject) {
 
-                Log.d("f")
+                Log.d("로그인응답", json.toString())
+
+                val code=json.getInt("code")
+
+                if (code==200){
+                    val data=json.getJSONObject("data")
+
+                    val user
+
+                    val loginUser= User.getUserFromJsonObject(user)
+
+                }
             }
 
 
