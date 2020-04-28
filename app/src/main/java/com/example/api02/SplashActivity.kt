@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import com.example.api02.utils.ConnectSever
 import com.example.api02.utils.ContextUtil
 
 class SplashActivity : BaseActivity() {
@@ -28,6 +30,15 @@ class SplashActivity : BaseActivity() {
 
                 //토큰이 저장되어있다면=>이 토큰으로 사용자 정보를 받아서
                 //글로벌데이터에 저장 하고=>액티비티 전환
+
+                ConnectSever.getRequestMyInfo(mContext, object :ConnectSever.JsonResponseHandler)
+                    override fun onResponse(json.toString())
+
+                    Log.d("내응답정보", json.toString())
+
+
+        }
+
 
                 val myIntent=Intent(mContext, MyPageActivity::class.java)
                 startActivity(myIntent)
