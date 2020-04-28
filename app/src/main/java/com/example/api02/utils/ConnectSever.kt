@@ -57,26 +57,9 @@ class ConnectSever {
 
                         handler?.onResponse(json)
 
-                        Log.d("로그인응답", json.toString())
-
-                        val code=json.getInt("code")
-
-                        if(code==200) {
-                            val data=json.getJSONObject("data")
-
-                            val user=data.getJSONObject("user")
-                            val token=data.getJSONObject("token")
-                        }
 
 
-                        else{
 
-                            //서버에서 내려주는 메세지를 토스트로 출력
-                            val message=json.getString("message")
-
-                            runOnuiThread {
-
-                                Toast.makeText(mC)
                             }
 
 

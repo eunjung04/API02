@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity() {
             val id=loginIdEdt.text.toString()
             val pw=pwEdt.text.toString()
 
-            ContextUtil.setUserToken(mContext, token)
+
 
             val myIntent = Intent(mContext, MyPageActivity::class.java)
             startActivity(myIntent)
@@ -52,6 +52,7 @@ class LoginActivity : BaseActivity() {
                     val nowLoginUser= User.getUserFromJsonObject(user)
 
                     GlobalData.loginUser=nowLoginUser
+                    ContextUtil.setUserToken(mContext,token)
 
 
                 }
