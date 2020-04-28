@@ -3,9 +3,11 @@ package com.example.api02
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.api02.utils.ConnectSever
 import com.example.api02.utils.ContextUtil
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 class LoginActivity : BaseActivity() {
 
@@ -30,7 +32,10 @@ class LoginActivity : BaseActivity() {
             startActivity(myIntent)
 
             ConnectSever.postRequestLogin(mContext,id,pw, object : ConnectSever)
-            override fun onResponse
+            override fun onResponse(json:JSONObject) {
+
+                Log.d("f")
+            }
 
 
         }
