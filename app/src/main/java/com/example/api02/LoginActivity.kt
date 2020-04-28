@@ -1,5 +1,6 @@
 package com.example.api02
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.api02.utils.ConnectSever
@@ -23,7 +24,10 @@ class LoginActivity : BaseActivity() {
             val id=loginIdEdt.text.toString()
             val pw=pwEdt.text.toString()
 
-            ContextUtil.setUserToken()
+            ContextUtil.setUserToken(mContext, token)
+
+            val myIntent = Intent(mContext, MyPageActivity::class.java)
+            startActivity(myIntent)
 
             ConnectSever.postRequestLogin(mContext,id,pw, object : ConnectSever)
             override fun onResponse
