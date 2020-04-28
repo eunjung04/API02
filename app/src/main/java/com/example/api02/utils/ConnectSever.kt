@@ -1,6 +1,7 @@
 package com.example.api02.utils
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import okhttp3.*
 import org.json.JSONObject
@@ -56,6 +57,8 @@ class ConnectSever {
 
                         handler?.onResponse(json)
 
+                        Log.d("로그인응답", json.toString())
+
                         val code=json.getInt("code")
 
                         if(code==200) {
@@ -73,7 +76,7 @@ class ConnectSever {
 
                             runOnuiThread {
 
-                                Toast.makeText()
+                                Toast.makeText(mC)
                             }
 
 

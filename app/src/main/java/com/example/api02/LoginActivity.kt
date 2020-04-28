@@ -3,6 +3,7 @@ package com.example.api02
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.api02.utils.ConnectSever
+import com.example.api02.utils.ContextUtil
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -21,6 +22,8 @@ class LoginActivity : BaseActivity() {
 
             val id=loginIdEdt.text.toString()
             val pw=pwEdt.text.toString()
+
+            ContextUtil.setUserToken()
 
             ConnectSever.postRequestLogin(mContext,id,pw, object : ConnectSever)
             override fun onResponse
