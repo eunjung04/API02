@@ -11,7 +11,7 @@ class User {
             parsedUser.loginId=json.getString("login_id")
             parsedUser.name=json.getString("name")
             parsedUser.phoneNum=json.getString("phoneNum")
-            parsedUser.memo=json
+            parsedUser.memo=json.getString("memo")
 
             return parsedUser
         }
