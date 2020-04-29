@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import com.example.api02.Adapters.PostAdapter
 import com.example.api02.R
 import com.example.api02.datas.Post
 import com.example.api02.utils.ConnectSever
 import org.json.JSONObject
 
 class BoardFragment : BaseFragment() {
+
+    lateinit var postAdapter: PostAdapter
+    var posts
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,6 +34,9 @@ class BoardFragment : BaseFragment() {
     }
 
     override fun setValues() {
+
+        postAdapter= PostAdapter(mContext, R.layout.post_list_item, posts)
+        postListView.addapter=PostAdapter
 
 
 
@@ -69,6 +77,11 @@ class BoardFragment : BaseFragment() {
 
 
                     }
+
+                    activity?.runOnUiThread {
+                        postAdapter.notifyDataSetChanged()
+                    }
+
 
                     for (post in posts){
                         Log.d("게시글제목", post.title)
