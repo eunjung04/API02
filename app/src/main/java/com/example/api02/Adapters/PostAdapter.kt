@@ -38,11 +38,11 @@ class PostAdapter(context: Context, val resId : Int, list : ArrayList<Post>) : A
 
         titleTxt.text=postDate.title
         phoneNum.text="(${postDate.phoneNum}"
-        //writeTxt.text=("${position.write.name}")
+        writeTxt.text=("${postDate.writer.name}")
 
 
         val sdf=SimpleDateFormat("yyyy-mm-dd")
-        createdTxt.text=sdf.format(postDate.created)
+        createdTxt.text=sdf.format(postDate.created.time)
 
         return  row
     }

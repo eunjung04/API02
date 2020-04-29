@@ -1,5 +1,6 @@
 package com.example.api02.fragements
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.api02.Adapters.PostAdapter
+import com.example.api02.EditPostActivity
 import com.example.api02.R
 import com.example.api02.datas.Post
 import com.example.api02.utils.ConnectSever
+import kotlinx.android.synthetic.main.fragement_board.*
 import org.json.JSONObject
 
 class BoardFragment : BaseFragment() {
@@ -31,12 +34,17 @@ class BoardFragment : BaseFragment() {
 
     override fun setupEvents() {
 
+        postBtn.setOnClickListener {
+            val myIntent= Intent(mContext, EditPostActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 
     override fun setValues() {
 
         postAdapter= PostAdapter(mContext, R.layout.post_list_item, posts)
-        postListView.addapter=PostAdapter
+        postListView.adapter=PostAdapter
 
         fun getPostsFromServer(){
 
