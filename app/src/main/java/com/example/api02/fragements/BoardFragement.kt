@@ -14,7 +14,7 @@ class BoardFragement : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate((R.layout.fragement_board, container, ))
+        return inflater.inflate(R.layout.fragement_board, container, false)
 
     }
 }
