@@ -7,7 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.api02.R
 
-class BoardFragement : Fragment() {
+class BoardFragement : BaseFragement() {
+
+
+
+    override fun setupEvents() {
+
+    }
+
+    override fun setValues() {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,4 +27,6 @@ class BoardFragement : Fragment() {
         return inflater.inflate(R.layout.fragement_board, container, false)
 
     }
+
+
 }
