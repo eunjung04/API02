@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment : Fragment() {
 
+    abstract val postListView: Any
     lateinit var mContext: Context
 
     override fun onAttach(context: Context) {

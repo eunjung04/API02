@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
+import com.example.api02.R
 import com.example.api02.datas.Post
+import kotlinx.android.synthetic.main.post_list_item.view.*
+import java.text.SimpleDateFormat
 
 class PostAdapter(context: Context, val resId : Int, list : ArrayList<Post>) : ArrayAdapter<Post>(context, resId, list) {
 
@@ -24,6 +28,21 @@ class PostAdapter(context: Context, val resId : Int, list : ArrayList<Post>) : A
         }
 
         val row=tempRow!!
+
+        val titleTxt=row.findViewById<TextView>(R.id.titleTxt)
+        val writeTxt=row.findViewById<TextView>(R.id.writeTxt)
+        val createdTxt=row.findViewById<TextView>(R.id.createdTxt)
+        val phoneNum=row.findViewById<TextView>(R.id.phoneNum)
+
+        val postDate=mList.get(position)
+
+        titleTxt.text=postDate.title
+        phoneNum.text="(${postDate.phoneNum}"
+        //writeTxt.text=("${position.write.name}")
+
+
+        val sdf=SimpleDateFormat("yyyy-mm-dd")
+        createdTxt.text=sdf.format(postDate.created)
 
         return  row
     }

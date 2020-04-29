@@ -16,7 +16,7 @@ import org.json.JSONObject
 class BoardFragment : BaseFragment() {
 
     lateinit var postAdapter: PostAdapter
-    var posts
+    var posts = ArrayList<Post>()
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class BoardFragment : BaseFragment() {
         setValues()
     }
 
-    val posts=ArrayList<Post>()
+
 
 
 
@@ -37,6 +37,10 @@ class BoardFragment : BaseFragment() {
 
         postAdapter= PostAdapter(mContext, R.layout.post_list_item, posts)
         postListView.addapter=PostAdapter
+
+        fun getPostsFromServer(){
+
+        }
 
 
 
