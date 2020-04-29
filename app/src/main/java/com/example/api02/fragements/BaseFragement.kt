@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragement : Fragment() {
+abstract class BaseFragment : Fragment() {
 
     lateinit var mContext: Context
 

@@ -14,83 +14,96 @@ class ConnectSever {
         fun onResponse(json: JSONObject)
     }
 
-        companion object {
+    companion object {
 
-            val BASE_URL = "http://192.168.0.243:5000"
+        val BASE_URL = "http://192.168.0.243:5000"
 
-            fun postRequestLogin(
-                context: Context,
-                id: String,
-                pw: String,
-                handler: JsonResponseHandler?
-            ) {
+        fun postRequestLogin(
+            context: Context,
+            id: String,
+            pw: String,
+            handler: JsonResponseHandler?
+        ) {
 
-                val client = OkHttpClient()
-                //어떤 기능을 수행하러 가는지 주소 완성.
-                //http://192.168.0.243:5000/auth
-                val urlStr = "${BASE_URL}/auth"
+            val client = OkHttpClient()
+            //어떤 기능을 수행하러 가는지 주소 완성.
+            //http://192.168.0.243:5000/auth
+            val urlStr = "${BASE_URL}/auth"
 
-                //서버에 들고갈 데이터를 첨부. =>POST메쏘드의 예제
-                val formBody = FormBody.Builder()
-                    .add("login_id", id)
-                    .add("password", pw)
-                    .build()
-
-
-                //화면이동으로 따지면 Intent  객체를 만드는 행위.
-                val request = Request.Builder()
-                    .url(urlStr)
-                    .post(formBody)
-                    //.header()=>API가 헤더를 요구하면 추가해야함.
-                    .build()
-
-                client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-
-                        e.printStackTrace()
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
+            //서버에 들고갈 데이터를 첨부. =>POST메쏘드의 예제
+            val formBody = FormBody.Builder()
+                .add("login_id", id)
+                .add("password", pw)
+                .build()
 
 
-                        val body = response.body!!.string()
-                        val json = JSONObject(body)
+            //화면이동으로 따지면 Intent  객체를 만드는 행위.
+            val request = Request.Builder()
+                .url(urlStr)
+                .post(formBody)
+                //.header()=>API가 헤더를 요구하면 추가해야함.
+                .build()
 
-                        handler?.onResponse(json)
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                    e.printStackTrace()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
 
 
+                    val body = response.body!!.string()
+                    val json = JSONObject(body)
+
+                    handler?.onResponse(json)
 
 
-                            }
+                }
 
 
+            })
 
+        }
 
+        fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
 
+            val client = OkHttpClient()
+            val urlBuilder = "${BASE_URL}/my_info".toHttpUrlOrNull()!!.newBuilder()
+            urlBuilder.addEncodedQueryParameter("device_token", "임시기기토큰")
+            urlBuilder.addEncodedQueryParameter("os", "Android")
 
-                })
+            val urlStr = urlBuilder.build().toString()
 
-            }
+            //  Log.d("완성된 주소", urlStr)
 
-            fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?){
+            val request = Request.Builder()
+                .url(urlStr)
+                .header("X-Http-Token", ContextUtil.getUserToken(context))
+                .build()
 
-                val client = OkHttpClient()
-                val urlBuilder = "${BASE_URL}/my_info".toHttpUrlOrNull()!!.newBuilder()
-                urlBuilder.addEncodedQueryParameter("device_token", "임시기기토큰")
-                urlBuilder.addEncodedQueryParameter("os", "Android")
+            client.newCall(request)
 
-                val urlStr=urlBuilder.build().toString()
+        }
 
-              //  Log.d("완성된 주소", urlStr)
+        fun getRequestPostList(context: Context, handler: JsonResponseHandler?) {
 
-                val request=Request.Builder()
-                    .url(urlStr)
-                    .header("X-Http-Token", ContextUtil.getUserToken(context))
-                    .build()
+            val client = OkHttpClient()
+            val urlBuilder = "${BASE_URL}/black_list".toHttpUrlOrNull()!!.newBuilder()
+           // urlBuilder.addEncodedQueryParameter("device_token", "임시기기토큰")
+            //urlBuilder.addEncodedQueryParameter("os", "Android")
 
-                client.newCall(request)
+            val urlStr = urlBuilder.build().toString()
 
-            }
+            //  Log.d("완성된 주소", urlStr)
+
+            val request = Request.Builder()
+                .url(urlStr)
+                .header("X-Http-Token", ContextUtil.getUserToken(context))
+                .build()
+
+            client.newCall(request)
 
         }
     }
+}
